@@ -2,6 +2,8 @@ import streamlit as st
 import torch
 from PIL import Image
 import cv2
+import os
+import pafy
 
 def frame_detect(img, size=None):
     model.conf = confidence
@@ -50,6 +52,22 @@ def video_processing(uploaded_video):
 
         cv_vid.release()
         
+def Youtube_parse(url):
+    _url = url
+    try:
+        video = pafy.new(_url)  
+        product = video.getbestvideo(preftype="mp4")   
+        product.download() 
+        
+        size = os.path.getsize()
+        if int(size)/1024 < 200:
+            return product
+        else: 
+            return None           
+    except:
+        return None
+        
+        
         
 
 def main():
@@ -62,10 +80,15 @@ def main():
     model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
     
     # Image and video download
-    
-    
     uploaded_image = st.file_uploader("Drop image here", type=["jpg", "jpeg", "png"])
     uploaded_video = st.file_uploader("Or video here", type=['mp4', 'mpv', 'avi'])
+    
+    #region Youtube parsing
+    url = str(st.text_input("Drop youtube video url here (should be less 200MB)"))
+    if url:    
+        buffer = Youtube_parse(url)
+        video_processing(buffer)
+    #endregion
     
     if uploaded_image: 
         image_processing(uploaded_image)
@@ -73,9 +96,6 @@ def main():
     if uploaded_video:
         video_processing(uploaded_video)
            
-    
-        
-
 if __name__ == "__main__":
     try:
         main()
