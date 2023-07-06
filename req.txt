@@ -1,0 +1,14 @@
+# Usage: pip install -r req.txt 
+matplotlib>=3.2.2
+numpy>=1.18.5
+opencv-python-headless
+Pillow>=7.1.2
+PyYAML>=5.3.1
+requests>=2.23.0
+torch>=1.7.0
+torchvision>=0.8.1
+tqdm>=4.41.0
+protobuf<4.21.5  # https://github.com/ultralytics/yolov5/issues/8012
+ 
+# Use to run: streamlit run streamlitXyolo.py
+# UPD: You should load all media you need on web-page 
