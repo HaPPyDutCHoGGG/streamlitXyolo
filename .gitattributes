@@ -1,3 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 # normalyzed image and video input and output
+# added parsing with vanilla youtube-dl (yt update killed fork, wait 4 yt-dl update)
