@@ -1,3 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 # normalyzed image and video input and output
+# tried to add video parsing with youtube-dl (library not working correctly)
+# wait till youtube-dl`s or pafy`s update (check 4 updates in forks:  vanilla-youtube-dl; pafy-youtube-dl- )
